@@ -3,31 +3,40 @@ var connection = require("../config/connection.js");
 var orm = {
 
 	selectAll: function(table, callback) {
-		var queryString = "SELECT * FROM ??";
-		var sql = connection.query(queryString, [table], 
+		var queryString = "SELECT * FROM " + table + ";"
+		var sql = connection.query(queryString, 
 			function(err, result) {
+				if (err) {
+					throw err;
+				}
 				console.log(sql);
-				callback(err, result);
+				callback(result);
 			}
 		).sql;
 	},
 
 	insert: function(table, cols, vals, callback) {
-		var queryString = "INSERT INTO ?? (??) VALUES (??)";
-		var sql = connection.query(queryString, [table, cols, vals], 
+		var queryString = "INSERT INTO" + table + "(" + cols + ")" + "VALUES (" + vals + ");";
+		var sql = connection.query(queryString, 
 			function(err, result) {
+				if (err) {
+					throw err;
+				}
 				console.log(sql);
-				callback(err, result);
+				callback(result);
 			}
 		).sql;
 	},
 
 	update: function(table, colAndVals, condition, callback) {
-		var queryString = "UPDATE ?? SET ?? = ?? WHERE ?? = ??;"
-		var sql = connection.query(queryString, [table, colAndVals, condition], 
+		var queryString = "UPDATE" + table + "SET" + colAndVals + "WHERE" + condition + ";"
+		var sql = connection.query(queryString, 
 			function(err, result) {
+				if (err) {
+					throw err;
+				}				
 				console.log(sql);
-				callback(err, result);
+				callback(result);
 			}
 		).sql;
 	}
