@@ -6,13 +6,13 @@ var burger = {
 			callback(res);
 		});
 	},
-	insert: function(cols, vals, callback) {
-		orm.insert("burgers", cols, vals, function(res) {
+	insert: function(vals, callback) {
+		orm.insert(vals, function(res) {
 			callback(res);
 		});
 	},
-	update: function(colAndVals, condition,callback) {
-		orm.update("burgers", colAndVals, condition, function(res) {
+	update: function(condition,callback) {
+		orm.update(condition, function(res) {
 			callback(res);
 		})
 	}

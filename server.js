@@ -7,7 +7,7 @@ var burger = require("./models/burger.js");
 
 
 // Set up Express
-var PORT = process.env.PORT || 3306;
+var PORT = process.env.PORT || 3000;
 var app = express();
 
 // Static directory
@@ -23,6 +23,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
+
+//Routes
 app.get("/", function(req, res) {
     burger.selectAll(function(data) {
       var hbsObject = {
@@ -33,7 +35,7 @@ app.get("/", function(req, res) {
     });
 });
 
-app.use("/api/burgers", burgerController);
+app.use("/", burgerController);
 
 // Start server
 app.listen(PORT, function() {
